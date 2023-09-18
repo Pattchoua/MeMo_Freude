@@ -85,7 +85,7 @@ const SampleMemories = () => {
   return (
     <div className="bg-gray-100 py-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold mb-4">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4">
           Entdecke schöne Erinnerungen
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

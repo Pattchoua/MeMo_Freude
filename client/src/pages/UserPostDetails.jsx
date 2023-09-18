@@ -65,7 +65,7 @@ const UserPostDetails = () => {
           },
         }
       );
-  
+
       setPost((prevPost) => {
         if (prevPost) {
           return {
@@ -73,20 +73,19 @@ const UserPostDetails = () => {
             commentsCount: (prevPost.commentsCount || 0) + 1,
             comments: [
               ...(prevPost.comments || []),
-              { ...response.data, createdBy: user }, 
+              { ...response.data, createdBy: user },
             ],
           };
         }
         return prevPost;
       });
-  
+
       setIsCommentModalOpen(false);
       setCommentText("");
     } catch (error) {
       console.error("Error adding comment:", error);
     }
   };
-  
 
   useEffect(() => {
     axios
@@ -142,7 +141,7 @@ const UserPostDetails = () => {
                         onClick={handleDelete}
                         className="bg-red-500 text-white px-6 py-3 rounded-full hover:bg-red-600 transition duration-300 text-lg flex-1"
                       >
-                       Löschen
+                        Löschen
                       </button>
                       <Link
                         to={`/posts/${id}/update`}
@@ -178,22 +177,26 @@ const UserPostDetails = () => {
         <div className="lg:w-1/2 pl-6">
           <div className="bg-white rounded-lg overflow-hidden shadow-lg">
             <div className="p-6">
-              <h2 className="text-2xl font-semibold mb-4 text-blue-900">Kommentare</h2>
-              {post?.comments && (
-                <div>
-                  {post.comments.map((comment) => (
-                    <div
-                      key={comment._id}
-                      className="bg-gray-100 p-2 rounded-lg mt-2"
-                    >
-                      <p className="text-black">{comment.text}</p>
-                      <p className="text-gray-500">
-                        Von {comment.createdBy.username}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <h2 className="text-2xl font-semibold mb-4 text-blue-900">
+                Kommentare
+              </h2>
+              <div className="comment-container max-h-64 overflow-y-auto">
+                {post?.comments && (
+                  <div>
+                    {post.comments.map((comment) => (
+                      <div
+                        key={comment._id}
+                        className="bg-gray-100 p-2 rounded-lg mt-2"
+                      >
+                        <p className="text-black">{comment.text}</p>
+                        <p className="text-gray-500">
+                          Von {comment.createdBy.username}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 onClick={openCommentModal}
                 className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"

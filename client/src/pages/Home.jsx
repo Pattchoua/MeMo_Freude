@@ -90,10 +90,10 @@ const Home = () => {
                   } absolute bottom-0 left-0 w-full h-1/3 p-4 text-white flex flex-col justify-end`}
                 >
                   <h1
-                    className={`${
-                      slide.isCTASlide ? 'text-4xl' : 'text-4xl'
-                    } font-semibold mb-2`}
-                  >
+                      className={`${
+                          slide.isCTASlide ? 'text-2xl' : 'text-2xl'
+                        } font-semibold mb-2 sm:text-2xl md:text-3xl lg:text-4xl`}
+                    >
                     {slide.title}
                   </h1>
                   <p className={`${slide.isCTASlide ? 'text-lg' : 'text-lg'}`}>

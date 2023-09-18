@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import { AuthContext } from '../context/Auth'; 
-import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../context/Auth';
+import { Navigate, Link } from 'react-router-dom';
 
 function Login(props) {
   const context = useContext(AuthContext);
@@ -11,16 +11,28 @@ function Login(props) {
     password: '',
   });
 
+  // State to manage password length message
+  const [passwordLengthMessage, setPasswordLengthMessage] = useState('');
+
   // Handle input changes
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
+
+    // Check password length and set the message
+    if (name === 'password') {
+      if (value.length < 8) {
+        setPasswordLengthMessage('Passwort muss mindestens 8 Zeichen lang sein');
+      } else {
+        setPasswordLengthMessage('');
+      }
+    }
   };
 
   // Handle form submission
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    context.login(user); 
+    context.login(user);
     props.closeModal();
   };
 
@@ -42,18 +54,18 @@ function Login(props) {
     return (
       <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 ${formBackgroundColor}`}>
         <div className="w-96 p-8 bg-white rounded-lg shadow-lg relative z-50">
-          {context.errors?.message} 
+          {context.errors?.message}
           <h2 className="text-2xl font-semibold mb-4">Login</h2>
 
           {/* Display a message to register if the user is not registered */}
           <p className="text-gray-700 mb-4">
-            Not registered yet? <a href="/register" className="text-primary hover:underline">Register now</a>.
+            Noch nicht registriert? <Link to="/register" className="text-primary hover:underline">Jetzt registrieren</Link>.
           </p>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email:
+                E-Mail:
               </label>
               <input
                 type="email"
@@ -68,7 +80,7 @@ function Login(props) {
 
             <div className="mb-6">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password:
+                Passwort:
               </label>
               <input
                 type="password"
@@ -79,6 +91,7 @@ function Login(props) {
                 required
                 className="mt-1 p-2 w-full border rounded-md"
               />
+              {passwordLengthMessage && <p className="text-red-500">{passwordLengthMessage}</p>}
             </div>
 
             <div className="flex justify-between">
@@ -86,14 +99,14 @@ function Login(props) {
                 type="submit"
                 className="w-full bg-primary text-white py-2 rounded-md hover:bg-primary-dark transition duration-300"
               >
-                Login
+                Einloggen
               </button>
               <button
                 type="button"
                 onClick={handleCancel}
                 className="w-full bg-gray-300 text-gray-800 py-2 rounded-md hover:bg-gray-400 transition duration-300 ml-2"
               >
-                Cancel
+                Abbrechen
               </button>
             </div>
           </form>
