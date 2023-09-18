@@ -4,7 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const connectDB = require("./config/Mongodb");
-const path = require('path');
+//const path = require('path');
 
 
 // Importing routers
@@ -40,5 +40,4 @@ app.use('/api/posts', postsRouter);
 connectDB().then(() => {
     console.log("Db connected");
     app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));
-  });
-  gi
+});
