@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "win-dev":"nodemon index.js",
-    "build": "npm i"
+    "start": "node index.js",
+    "win-dev":"nodemon index.js"
   },
   "keywords": [],
   "author": "patrick Tchoua",
