@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import axios from "../Axios";
 import { AuthContext } from "../context/Auth";
-import ProjectsBanner from "../assets/projectsBanner.png";
+import ProjectsBanner from "../assets/ProjectsBanner.png";
 import { Link, useLocation } from "react-router-dom";
 import { FaComments, FaMapMarkerAlt } from "react-icons/fa";
 
