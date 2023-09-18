@@ -29,16 +29,16 @@ app.use("/auth", authRouter);
 app.use('/api/posts', postsRouter);
 
 // DEPLOYMENT
-if (process.env.NODE_ENV === 'production') {
+{/*if (process.env.NODE_ENV === 'production') {
     //*Set static folder up in production
     const buildPath = path.join(__dirname, '../client/dist');
     app.use(express.static(buildPath));
     app.get('*', (req, res) => res.sendFile(path.join(buildPath, 'index.html')));
-}
+}*/}
 
 // database connection and server starting
 connectDB().then(() => {
     console.log("Db connected");
     app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));
   });
-  
+  gi
